@@ -1,0 +1,26 @@
+{
+  "name": "primary-app",
+  "version": "1.0.0",
+  "description": "Try to build the foundation of my futur apps, with React &amp; Node",
+  "main": "index.js",
+  "engines":{
+    "node": "8.9.1",
+    "npm": "5.5.1"
+  },
+  "scripts": {
+    "start" : "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoLoADR/primary-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YoLoADR/primary-app/issues"
+  },
+  "homepage": "https://github.com/YoLoADR/primary-app#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
