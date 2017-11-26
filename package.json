@@ -23,6 +23,7 @@
   "homepage": "https://github.com/YoLoADR/primary-app#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "mongoose": "^4.13.5",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
