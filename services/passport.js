@@ -14,12 +14,17 @@ passport.use(new GoogleStrategy({
 function(accessToken, refreshToken, profile, cb) {
   console.log("Success code Google accessToken : ", accessToken);
   console.log("Success code Google profile : ", profile);
-  let user = new User({googleId: profile.id, displayName: profile.displayName}).save(()=>{
-    console.log(user, "save from google");
-  });
-  // User.findOrCreate({facebookId: profile.id, displayName: profile.displayName}, function (err, user) {
-  //   return cb(err, user);
-  // });
+  User.findOne({googleId: profile.id})
+    .then((existingUser)=>{
+      if(existingUser){
+        console.log("User already exist :", existingUser);
+      }else{
+        // User doesn't exist, we can creat this one
+        let user = new User({googleId: profile.id, displayName: profile.displayName}).save(()=>{
+          console.log(user, "save from google");
+        });
+      }
+    });
 }));
 
 
@@ -31,12 +36,18 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, cb) {
     console.log("Success code FACEBOOK : ", accessToken);
     console.log("Success code FACEBOOK profile: ", profile);
-    let user = new User({facebookId: profile.id, displayName: profile.displayName});
-    user.save(()=>{
-      console.log(user, "save from facebook");
+    
+    User.findOne({facebookId: profile.id})
+    .then((existingUser)=>{
+      if(existingUser){
+        done(null, existingUser);
+      }else{
+        // User doesn't exist, we can creat this one
+        let user = new User({facebookId: profile.id, displayName: profile.displayName});
+        user.save((newUser)=>{
+          done(null, newUser);
+        });
+      }
     });
-    // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    //   return cb(err, user);
-    // });
   }
 ));
