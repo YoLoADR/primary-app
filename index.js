@@ -16,7 +16,7 @@ app.use(
         keys: [keys.cookieKey]
     })
 );
-
+// Get data of cookie
 app.use(passport.initialize());
 app.use(passport.session());
 
